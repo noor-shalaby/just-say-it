@@ -30,8 +30,8 @@ func _on_mouse_entered() -> void:
 	var target_pos: Vector2 = get_random_point_in_viewport()
 	
 	var tween: Tween = create_tween() \
-	.set_trans(Tween.TRANS_SINE) \
-	.set_ease(Tween.EASE_IN_OUT)
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
 	
 	tween.tween_property(self, "global_position", target_pos, global_position.distance_to(target_pos) * 0.0005)
 	await tween.finished

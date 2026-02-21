@@ -82,23 +82,24 @@ scale_amount_curve = SubResource("Curve_rlaii")
 color = Color(0.9607843, 0.9019608, 0.9098039, 1)
 color_ramp = SubResource("Gradient_rlaii")
 
-[node name="ProposalLabel" type="Label" parent="." unique_id=1596191804]
+[node name="Headline" type="Label" parent="." unique_id=1596191804]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -233.5
+offset_left = -213.5
 offset_top = -73.5
-offset_right = 233.5
+offset_right = 213.5
 offset_bottom = -6.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.9098039, 1)
 theme_override_fonts/font = ExtResource("3_3cfgd")
 theme_override_font_sizes/font_size = 48
-text = "Will you marry me? ;)"
+text = "Will you marry me?"
 
 [node name="NoButton" type="Button" parent="." unique_id=2069734064]
 custom_minimum_size = Vector2(180, 64)
@@ -163,3 +164,5 @@ script = ExtResource("4_3cfgd")
 [connection signal="mouse_entered" from="NoButton" to="NoButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="YesButton" to="YesButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="YesButton" to="YesButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="YesButton" to="YesButton" method="_on_pressed"]

@@ -11,9 +11,9 @@ var breathing_tween: Tween
 
 func start_breathing() -> void:
 	breathing_tween = create_tween() \
-	.set_trans(Tween.TRANS_SINE) \
-	.set_ease(Tween.EASE_IN_OUT) \
-	.set_loops()
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT) \
+		.set_loops()
 	
 	breathing_tween.tween_property(self, "scale", Vector2.ONE * 1.1, 1.3)
 	breathing_tween.tween_interval(0.2)
@@ -26,9 +26,9 @@ func stop_breathing() -> void:
 
 func tween_border(width: float = 0.0, anim_dur: float = UNHOVER_ANIM_DUR) -> void:
 	var tween: Tween = create_tween() \
-	.set_parallel(true) \
-	.set_trans(Tween.TRANS_SINE) \
-	.set_ease(Tween.EASE_IN_OUT)
+		.set_parallel(true) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
 	
 	tween.tween_property(stylebox, "border_width_left", width, anim_dur)
 	tween.tween_property(stylebox, "border_width_top", width, anim_dur)
@@ -41,3 +41,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	tween_border()
+
+
+func _on_pressed() -> void:
+	stop_breathing()
