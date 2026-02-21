@@ -1,8 +1,10 @@
 extends Button
 
 
-@export var hover_anim_dur: float = 0.1
-@export var unhover_anim_dur: float = 0.2
+const HOVER_ANIM_DUR: float = 0.1
+const UNHOVER_ANIM_DUR: float = 0.2
+
+@onready var stylebox: StyleBoxFlat = get_theme_stylebox("normal")
 
 var breathing_tween: Tween
 
@@ -22,20 +24,20 @@ func stop_breathing() -> void:
 		breathing_tween.kill()
 
 
-func tween_border(width: float = 0.0, anim_dur: float = unhover_anim_dur) -> void:
+func tween_border(width: float = 0.0, anim_dur: float = UNHOVER_ANIM_DUR) -> void:
 	var tween: Tween = create_tween() \
 	.set_parallel(true) \
 	.set_trans(Tween.TRANS_SINE) \
 	.set_ease(Tween.EASE_IN_OUT)
 	
-	tween.tween_property(get_theme_stylebox("normal"), "border_width_left", width, anim_dur)
-	tween.tween_property(get_theme_stylebox("normal"), "border_width_top", width, anim_dur)
-	tween.tween_property(get_theme_stylebox("normal"), "border_width_right", width, anim_dur)
-	tween.tween_property(get_theme_stylebox("normal"), "border_width_bottom", width, anim_dur)
+	tween.tween_property(stylebox, "border_width_left", width, anim_dur)
+	tween.tween_property(stylebox, "border_width_top", width, anim_dur)
+	tween.tween_property(stylebox, "border_width_right", width, anim_dur)
+	tween.tween_property(stylebox, "border_width_bottom", width, anim_dur)
 
 
 func _on_mouse_entered() -> void:
-	tween_border(4.0, hover_anim_dur)
+	tween_border(4.0, HOVER_ANIM_DUR)
 
 func _on_mouse_exited() -> void:
 	tween_border()

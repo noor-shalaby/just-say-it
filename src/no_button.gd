@@ -4,18 +4,18 @@ extends Button
 const SCREEN_MARGIN: float = 32.0
 
 @onready var viewport: Viewport = get_viewport()
+@onready var viewport_rect: Rect2 = viewport.get_visible_rect()
+@onready var screen_size: Vector2 = get_viewport_rect().size
 
 var is_moving: bool = false
 
 
 func get_random_point_in_viewport() -> Vector2:
-	var rect: Rect2 = viewport.get_visible_rect()
-	
 	var new_pos: Vector2
-	new_pos.x = randf_range(rect.position.x, rect.position.x + rect.size.x)
-	new_pos.y = randf_range(rect.position.y, rect.position.y + rect.size.y)
 	
-	var screen_size: Vector2 = get_viewport_rect().size
+	new_pos.x = randf_range(viewport_rect.position.x, viewport_rect.position.x + viewport_rect.size.x)
+	new_pos.y = randf_range(viewport_rect.position.y, viewport_rect.position.y + viewport_rect.size.y)
+	
 	new_pos.x = clamp(new_pos.x, SCREEN_MARGIN, screen_size.x - size.x - SCREEN_MARGIN)
 	new_pos.y = clamp(new_pos.y, SCREEN_MARGIN, screen_size.y - size.y - SCREEN_MARGIN)
 	

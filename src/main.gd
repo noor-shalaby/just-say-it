@@ -7,7 +7,7 @@ extends Control
 @onready var no_button: Button = $NoButton
 
 
-func _ready():
+func _ready() -> void:
 	proposal_label.visible_ratio = 0.0
 	yes_button.modulate.a = 0.0
 	no_button.modulate.a = 0.0
