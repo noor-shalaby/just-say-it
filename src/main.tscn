@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxerjja01tmkl"]
 
 [ext_resource type="FontFile" uid="uid://bc5568tcsyop8" path="res://assets/Montserrat-Medium.ttf" id="1_3cfgd"]
+[ext_resource type="Script" uid="uid://p571pl2p00cv" path="res://src/main.gd" id="1_fyndt"]
 [ext_resource type="Script" uid="uid://cdcsxps2yx4uw" path="res://src/no_button.gd" id="1_gh0ne"]
 [ext_resource type="FontFile" uid="uid://cos4gvmujlvil" path="res://assets/PlayfairDisplay-SemiBold.ttf" id="3_3cfgd"]
 [ext_resource type="Script" uid="uid://cu1gi5w5sawn8" path="res://src/yes_button.gd" id="4_3cfgd"]
@@ -29,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fyndt")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1632626786]
 layout_mode = 1

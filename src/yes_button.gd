@@ -7,10 +7,6 @@ extends Button
 var breathing_tween: Tween
 
 
-func _ready() -> void:
-	start_breathing()
-
-
 func start_breathing():
 	breathing_tween = create_tween() \
 	.set_trans(Tween.TRANS_SINE) \
