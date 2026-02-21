@@ -95,7 +95,7 @@ func _on_yes_button_pressed() -> void:
 	var tween: Tween = create_tween() \
 		.set_parallel(true)
 	
-	# Fade + shrink buttons
+	# Fade buttons
 	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
 	tween.tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
 	tween.tween_interval(1.0)
