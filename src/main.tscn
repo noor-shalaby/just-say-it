@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cos4gvmujlvil" path="res://assets/PlayfairDisplay-SemiBold.ttf" id="3_3cfgd"]
 [ext_resource type="Script" uid="uid://cu1gi5w5sawn8" path="res://src/yes_button.gd" id="4_3cfgd"]
 [ext_resource type="Texture2D" uid="uid://bsf47lhsod1k1" path="res://assets/particle_circle.png" id="7_rlaii"]
+[ext_resource type="AudioStream" uid="uid://bbl7jtgugcpc" path="res://assets/single-piano-note-a4_100bpm_C_major.wav" id="8_5mrjc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rlaii"]
 shader = ExtResource("2_kmhfv")
@@ -160,6 +161,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ts572")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_ts572")
 text = "Yes"
 script = ExtResource("4_3cfgd")
+
+[node name="PianoA4" type="AudioStreamPlayer" parent="." unique_id=1694427683]
+stream = ExtResource("8_5mrjc")
 
 [connection signal="mouse_entered" from="NoButton" to="NoButton" method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="YesButton" to="YesButton" method="_on_mouse_entered"]

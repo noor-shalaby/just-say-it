@@ -7,6 +7,7 @@ extends Control
 @onready var headline: Label = $Headline
 @onready var yes_button: Button = $YesButton
 @onready var no_button: Button = $NoButton
+@onready var piano_a4: AudioStreamPlayer = $PianoA4
 
 
 func _ready() -> void:
@@ -90,6 +91,10 @@ func transition_headline() -> void:
 
 
 func _on_yes_button_pressed() -> void:
+	yes_button.disabled = true
+	no_button.disabled = true
+	
+	piano_a4.play()
 	bg_particles.emitting = false
 	
 	var tween: Tween = create_tween() \
