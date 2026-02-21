@@ -17,18 +17,19 @@ func _ready():
 	await scene_tree.create_timer(0.2).timeout
 	
 	var tween: Tween = create_tween()
-	tween.tween_property(proposal_label, "visible_ratio", 1.0, 0.6)
+	tween.tween_property(proposal_label, "visible_ratio", 1.0, 1.0)
 	
-	await scene_tree.create_timer(1.0).timeout
+	await tween.finished
+	await scene_tree.create_timer(0.5).timeout
 	 
 	tween = create_tween().set_parallel(true) \
 	.set_trans(Tween.TRANS_ELASTIC) \
 	.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(yes_button, "modulate:a", 1.0, 0.6)
-	tween.tween_property(no_button, "modulate:a", 1.0, 0.6)
-	tween.tween_property(yes_button, "scale", Vector2.ONE, 0.6)
-	tween.tween_property(no_button, "scale", Vector2.ONE, 0.6)
+	tween.tween_property(yes_button, "modulate:a", 1.0, 0.5)
+	tween.tween_property(no_button, "modulate:a", 1.0, 0.5)
+	tween.tween_property(yes_button, "scale", Vector2.ONE, 0.5)
+	tween.tween_property(no_button, "scale", Vector2.ONE, 0.5)
 	
 	await tween.finished
 	yes_button.start_breathing()
