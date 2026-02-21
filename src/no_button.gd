@@ -15,7 +15,7 @@ func get_random_point_in_viewport() -> Vector2:
 	new_pos.x = randf_range(rect.position.x, rect.position.x + rect.size.x)
 	new_pos.y = randf_range(rect.position.y, rect.position.y + rect.size.y)
 	
-	var screen_size = get_viewport_rect().size
+	var screen_size: Vector2 = get_viewport_rect().size
 	new_pos.x = clamp(new_pos.x, SCREEN_MARGIN, screen_size.x - size.x - SCREEN_MARGIN)
 	new_pos.y = clamp(new_pos.y, SCREEN_MARGIN, screen_size.y - size.y - SCREEN_MARGIN)
 	
