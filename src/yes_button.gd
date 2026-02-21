@@ -17,9 +17,9 @@ func start_breathing():
 	.set_ease(Tween.EASE_IN_OUT) \
 	.set_loops()
 	
-	breathing_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 1.3)
+	breathing_tween.tween_property(self, "scale", Vector2.ONE * 1.1, 1.3)
 	breathing_tween.tween_interval(0.2)
-	breathing_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 1.3)
+	breathing_tween.tween_property(self, "scale", Vector2.ONE, 1.3)
 
 func stop_breathing() -> void:
 	if breathing_tween:
