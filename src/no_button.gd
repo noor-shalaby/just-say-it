@@ -10,18 +10,6 @@ const SCREEN_MARGIN: float = 32.0
 var is_moving: bool = false
 
 
-func get_random_point_in_viewport() -> Vector2:
-	var new_pos: Vector2
-	
-	new_pos.x = randf_range(viewport_rect.position.x, viewport_rect.position.x + viewport_rect.size.x)
-	new_pos.y = randf_range(viewport_rect.position.y, viewport_rect.position.y + viewport_rect.size.y)
-	
-	new_pos.x = clamp(new_pos.x, SCREEN_MARGIN, screen_size.x - size.x - SCREEN_MARGIN)
-	new_pos.y = clamp(new_pos.y, SCREEN_MARGIN, screen_size.y - size.y - SCREEN_MARGIN)
-	
-	return new_pos if global_position.distance_to(new_pos) > 128 else get_random_point_in_viewport()
-
-
 func _on_mouse_entered() -> void:
 	if is_moving:
 		return
@@ -36,3 +24,15 @@ func _on_mouse_entered() -> void:
 	tween.tween_property(self, "global_position", target_pos, global_position.distance_to(target_pos) * 0.0005)
 	await tween.finished
 	is_moving = false
+
+
+func get_random_point_in_viewport() -> Vector2:
+	var new_pos: Vector2
+	
+	new_pos.x = randf_range(viewport_rect.position.x, viewport_rect.position.x + viewport_rect.size.x)
+	new_pos.y = randf_range(viewport_rect.position.y, viewport_rect.position.y + viewport_rect.size.y)
+	
+	new_pos.x = clamp(new_pos.x, SCREEN_MARGIN, screen_size.x - size.x - SCREEN_MARGIN)
+	new_pos.y = clamp(new_pos.y, SCREEN_MARGIN, screen_size.y - size.y - SCREEN_MARGIN)
+	
+	return new_pos if global_position.distance_to(new_pos) > 128 else get_random_point_in_viewport()

@@ -59,6 +59,37 @@ func _ready() -> void:
 	yes_button.start_breathing()
 
 
+func _on_yes_button_pressed() -> void:
+	yes_button.disabled = true
+	if yes_button_tween:
+		yes_button_tween.kill()
+	
+	no_button.disabled = true
+	if no_button_tween:
+		no_button_tween.kill()
+	
+	bg_particles.emitting = false
+	piano_a4.play()
+	bg_track.stop()
+	bg_track.stream = END_TRACK
+	bg_track.play()
+	
+	var tween: Tween = create_tween() \
+		.set_parallel(true)
+	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
+	tween.tween_property(no_button, "scale", Vector2.ONE * 0.95, 0.5)
+	
+	await scene_tree.create_timer(0.2).timeout
+	
+	var tween2: Tween = create_tween() \
+		.set_parallel(true)
+	tween2.tween_property(yes_button, "modulate:a", 0.0, 0.7)
+	tween2.tween_property(yes_button, "scale", Vector2.ONE * 0.95, 0.7)
+	
+	await scene_tree.create_timer(0.9).timeout
+	transition_headline()
+
+
 func brighten_background() -> void:
 	var current_color: Color = bg_mat.get_shader_parameter("center_color")
 	var target_color: Color = current_color.lightened(0.08)
@@ -98,33 +129,3 @@ func transition_headline() -> void:
 	tween.tween_property(headline, "modulate:a", 1.0, 1.0)
 	tween.tween_property(headline, "position:y", headline.position.y + 10, 1.0)
 	tween.tween_property(headline, "scale", Vector2.ONE, 1.0)
-
-
-func _on_yes_button_pressed() -> void:
-	yes_button.disabled = true
-	if yes_button_tween:
-		yes_button_tween.kill()
-	no_button.disabled = true
-	if no_button_tween:
-		no_button_tween.kill()
-	
-	piano_a4.play()
-	bg_particles.emitting = false
-	bg_track.stop()
-	bg_track.stream = END_TRACK
-	bg_track.play()
-	
-	var tween: Tween = create_tween() \
-		.set_parallel(true)
-	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
-	tween.tween_property(no_button, "scale", Vector2.ONE * 0.95, 0.5)
-	
-	await scene_tree.create_timer(0.2).timeout
-	
-	var tween2: Tween = create_tween() \
-		.set_parallel(true)
-	tween2.tween_property(yes_button, "modulate:a", 0.0, 0.7)
-	tween2.tween_property(yes_button, "scale", Vector2.ONE * 0.95, 0.7)
-	
-	await scene_tree.create_timer(0.9).timeout
-	transition_headline()
