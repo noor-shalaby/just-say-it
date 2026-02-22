@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cos4gvmujlvil" path="res://assets/PlayfairDisplay-SemiBold.ttf" id="3_3cfgd"]
 [ext_resource type="Script" uid="uid://cu1gi5w5sawn8" path="res://src/yes_button.gd" id="4_3cfgd"]
 [ext_resource type="AudioStream" uid="uid://dxosbuyplayx1" path="res://assets/retroindiejosh_pattern.wav" id="4_kf8lf"]
-[ext_resource type="Texture2D" uid="uid://bsf47lhsod1k1" path="res://assets/particle_circle.png" id="7_rlaii"]
+[ext_resource type="Texture2D" uid="uid://dj4s22l8uxoan" path="res://assets/noun-leaf-4800668.png" id="5_uewes"]
 [ext_resource type="AudioStream" uid="uid://bbl7jtgugcpc" path="res://assets/single-piano-note-a4_100bpm_C_major.wav" id="8_5mrjc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rlaii"]
@@ -69,15 +69,18 @@ offset_right = 40.0
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0, 1)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="BackgroundParticlesEmitter" unique_id=430644172]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BackgroundParticlesEmitter" unique_id=1433550144]
 position = Vector2(0, 40)
-texture = ExtResource("7_rlaii")
+amount = 16
+texture = ExtResource("5_uewes")
 lifetime = 32.0
 preprocess = 32.0
 direction = Vector2(0.5, -0.5)
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
 initial_velocity_max = 160.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
 scale_amount_min = 0.7
 scale_amount_max = 1.3
 scale_amount_curve = SubResource("Curve_rlaii")
