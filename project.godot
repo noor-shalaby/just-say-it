@@ -13,6 +13,8 @@ config_version=5
 config/name="Just Say It"
 run/main_scene="uid://dxerjja01tmkl"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(0.10980392, 0.10980392, 0.11764706, 1)
+boot_splash/image="uid://dbieng1wex0du"
 config/icon="res://icon.svg"
 
 [debug]
