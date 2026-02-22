@@ -77,12 +77,10 @@ func transition_headline() -> void:
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 	
-	# Fade out + slight upward drift
 	tween.tween_property(headline, "modulate:a", 0.0, 1.0)
 	tween.tween_property(headline, "position:y", headline.position.y - 10, 1.0)
 	tween.tween_property(headline, "scale", Vector2.ONE * 0.98, 1.0)
 	
-	# Wait before bringing new text
 	await tween.finished
 	await scene_tree.create_timer(0.5).timeout
 	
@@ -91,7 +89,6 @@ func transition_headline() -> void:
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 	
-	# Fade new text in
 	brighten_background()
 	headline.text = "I knew you would ;)"
 	headline.modulate = headline.modulate.lightened(0.05)
@@ -110,13 +107,17 @@ func _on_yes_button_pressed() -> void:
 	bg_track.stream = END_TRACK
 	bg_track.play()
 	
-	var tween: Tween = create_tween()
-	
-	# Fade buttons
+	var tween: Tween = create_tween() \
+		.set_parallel(true)
 	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
-	tween.parallel().tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
-	tween.tween_property(yes_button, "modulate:a", 0.0, 1.0)
-	tween.parallel().tween_property(yes_button, "scale", Vector2.ONE * 1.02, 1.0)
+	tween.tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
 	
-	await tween.finished
+	await scene_tree.create_timer(0.25).timeout
+	
+	var tween2: Tween = create_tween() \
+		.set_parallel(true)
+	tween2.tween_property(yes_button, "modulate:a", 0.0, 1.0)
+	tween2.tween_property(yes_button, "scale", Vector2.ONE * 1.02, 1.0)
+	
+	await scene_tree.create_timer(0.5).timeout
 	transition_headline()
