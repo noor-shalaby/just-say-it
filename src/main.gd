@@ -12,6 +12,9 @@ const END_TRACK: AudioStreamWAV = preload("uid://pynw0kyixauc")
 @onready var no_button: Button = $NoButton
 @onready var piano_a4: AudioStreamPlayer = $PianoA4
 
+var yes_button_tween: Tween
+var no_button_tween: Tween
+
 
 func _ready() -> void:
 	headline.visible_ratio = 0.0
@@ -33,23 +36,23 @@ func _ready() -> void:
 	
 	await tween.finished
 	 
-	tween = create_tween() \
+	yes_button_tween = create_tween() \
 		.set_parallel(true) \
 		.set_trans(Tween.TRANS_ELASTIC) \
 		.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(yes_button, "modulate:a", 1.0, 2.0)
-	tween.tween_property(yes_button, "scale", Vector2.ONE, 2.0)
+	yes_button_tween.tween_property(yes_button, "modulate:a", 1.0, 2.0)
+	yes_button_tween.tween_property(yes_button, "scale", Vector2.ONE, 2.0)
 	
 	await scene_tree.create_timer(0.2).timeout
 	
-	var tween2: Tween = create_tween() \
+	no_button_tween = create_tween() \
 		.set_parallel(true) \
 		.set_trans(Tween.TRANS_ELASTIC) \
 		.set_ease(Tween.EASE_OUT)
 	
-	tween2.tween_property(no_button, "modulate:a", 1.0, 2.0)
-	tween2.tween_property(no_button, "scale", Vector2.ONE, 2.0)
+	no_button_tween.tween_property(no_button, "modulate:a", 1.0, 2.0)
+	no_button_tween.tween_property(no_button, "scale", Vector2.ONE, 2.0)
 	
 	await tween.finished
 	
@@ -99,7 +102,11 @@ func transition_headline() -> void:
 
 func _on_yes_button_pressed() -> void:
 	yes_button.disabled = true
+	if yes_button_tween:
+		yes_button_tween.kill()
 	no_button.disabled = true
+	if no_button_tween:
+		no_button_tween.kill()
 	
 	piano_a4.play()
 	bg_particles.emitting = false
@@ -112,7 +119,7 @@ func _on_yes_button_pressed() -> void:
 	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
 	tween.tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
 	
-	await scene_tree.create_timer(0.25).timeout
+	await scene_tree.create_timer(0.2).timeout
 	
 	var tween2: Tween = create_tween() \
 		.set_parallel(true)
