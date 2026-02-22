@@ -39,9 +39,17 @@ func _ready() -> void:
 		.set_ease(Tween.EASE_OUT)
 	
 	tween.tween_property(yes_button, "modulate:a", 1.0, 2.0)
-	tween.tween_property(no_button, "modulate:a", 1.0, 2.0)
 	tween.tween_property(yes_button, "scale", Vector2.ONE, 2.0)
-	tween.tween_property(no_button, "scale", Vector2.ONE, 2.0)
+	
+	await scene_tree.create_timer(0.2).timeout
+	
+	var tween2: Tween = create_tween() \
+		.set_parallel(true) \
+		.set_trans(Tween.TRANS_ELASTIC) \
+		.set_ease(Tween.EASE_OUT)
+	
+	tween2.tween_property(no_button, "modulate:a", 1.0, 2.0)
+	tween2.tween_property(no_button, "scale", Vector2.ONE, 2.0)
 	
 	await tween.finished
 	
