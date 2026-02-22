@@ -54,7 +54,7 @@ func _ready() -> void:
 	no_button_tween.tween_property(no_button, "modulate:a", 1.0, 2.0)
 	no_button_tween.tween_property(no_button, "scale", Vector2.ONE, 2.0)
 	
-	await tween.finished
+	await no_button_tween.finished
 	
 	yes_button.start_breathing()
 
