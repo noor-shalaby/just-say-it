@@ -102,15 +102,14 @@ func _on_yes_button_pressed() -> void:
 	bg_track.stream = END_TRACK
 	bg_track.play()
 	
-	var tween: Tween = create_tween() \
-		.set_parallel(true)
+	var tween: Tween = create_tween()
 	
 	# Fade buttons
-	tween.tween_property(no_button, "modulate:a", 0.0, 0.5)
-	tween.tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
+	tween.parallel().tween_property(no_button, "modulate:a", 0.0, 0.5)
+	tween.parallel().tween_property(no_button, "scale", Vector2.ONE * 0.98, 0.5)
 	tween.tween_interval(1.0)
-	tween.tween_property(yes_button, "modulate:a", 0.0, 1.0)
-	tween.tween_property(yes_button, "scale", Vector2.ONE * 1.02, 1.0)
+	tween.parallel().tween_property(yes_button, "modulate:a", 0.0, 1.0)
+	tween.parallel().tween_property(yes_button, "scale", Vector2.ONE * 1.02, 1.0)
 	
 	await tween.finished
 	await scene_tree.create_timer(0.5).timeout
