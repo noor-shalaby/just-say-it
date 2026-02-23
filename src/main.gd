@@ -3,6 +3,7 @@ extends Control
 
 const END_TRACK: AudioStreamWAV = preload("uid://pynw0kyixauc")
 
+@onready var app_window: Window = get_window()
 @onready var scene_tree: SceneTree = get_tree()
 @onready var bg_mat: Material = $Background.material
 @onready var bg_particles: Array[Node] = $BackgroundParticlesEmitter.get_children()
@@ -57,6 +58,15 @@ func _ready() -> void:
 	await no_button_tween.finished
 	
 	yes_button.start_breathing()
+
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("fullscreen"):
+		match app_window.mode:
+			DisplayServer.WINDOW_MODE_WINDOWED:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func _on_yes_button_pressed() -> void:
