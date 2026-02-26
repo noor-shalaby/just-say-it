@@ -2,7 +2,7 @@
 My take on the popular social media trend app for Valentine.
 
 
-# Asset Attribution
+# Assets Attribution
 
 Contains Single Piano Note - A4
 by Coolshot Records
